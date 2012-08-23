@@ -166,7 +166,7 @@ void recalcFocus(pnt p) {
         focus_pnt_idx = -1;
     }
 }
- 
+
 void handleMouseMove(struct SDL_MouseMotionEvent *mouseMove) {
     D(TRACE, "%3d %3d | %d\n", mouseMove->x, mouseMove->y, mouseMove->state);
     pnt p(mouseMove->x, mouseMove->y);
@@ -230,7 +230,7 @@ void handleKeyPress(SDL_keysym *keysym) {
     // case SDLK_b:
     //     // 'b' key was pressed
     //      * this toggles blending
-    //     
+    //
     //     blend = !blend;
     //     if (blend)
     //     {
@@ -246,7 +246,7 @@ void handleKeyPress(SDL_keysym *keysym) {
     case SDLK_F1:
         // 'f' key was pressed
         // this toggles fullscreen mode
-        
+
         SDL_WM_ToggleFullScreen(surface);
         break;
     default:
@@ -400,17 +400,19 @@ int main(int argc, char **argv) {
                 // something's happend with the focus
                 // if we lost focus or we are iconified, we
                 // shouldn't draw the screen
-                
+
                 if (event.active.gain == 0)
                 isActive = false;
                 else
                 isActive = true;
-                break;                
+                break;
             case SDL_VIDEORESIZE:
                 // handle resize event
+                D(TRACE, "Got resize %dx%d\n", event.resize.w, event.resize.h);
                 surface = SDL_SetVideoMode(event.resize.w,
-                            event.resize.h,
-                            16, videoFlags);
+                                           event.resize.h,
+                                           16,
+                                           videoFlags);
                 if (!surface) {
                     fprintf(stderr, "Could not get a surface after resize: %s\n", SDL_GetError());
                     Quit(1);
