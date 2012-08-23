@@ -1,0 +1,9 @@
+bezier
+.*.swp
+*.bin
+*.o
+*.aux
+*.log
+*.out
+*.pdf
+*.toc
